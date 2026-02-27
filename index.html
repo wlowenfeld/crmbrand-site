@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steady — Simple software for independent pros</title>
+  <meta name="description" content="Purpose-built, affordable software for managing clients, sessions, billing, and reminders — without enterprise complexity or pricing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 28'><rect x='0' y='20' width='32' height='6' rx='2' fill='%235b7f6e'/><rect x='4' y='10' width='24' height='6' rx='2' fill='%235b7f6e'/><rect x='8' y='0' width='16' height='6' rx='2' fill='%235b7f6e'/></svg>" type="image/svg+xml">
+  <meta name="theme-color" content="#fafaf9">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Steady home">
+        <svg class="nav-logo-mark" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="20" width="32" height="6" rx="2" fill="currentColor"/>
+          <rect x="4" y="10" width="24" height="6" rx="2" fill="currentColor"/>
+          <rect x="8" y="0" width="16" height="6" rx="2" fill="currentColor"/>
+        </svg>
+        <span class="nav-logo-text">Steady</span>
+      </a>
+      <div class="nav-links">
+        <a href="#products">Products</a>
+        <a href="#why">Why Steady</a>
+        <a href="#blog">Blog</a>
+      </div>
+      <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div class="nav-mobile" id="navMobile">
+      <a href="#products">Products</a>
+      <a href="#why">Why Steady</a>
+      <a href="#blog">Blog</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-logo-large" aria-hidden="true">
+        <svg viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="20" width="32" height="6" rx="2" fill="currentColor"/>
+          <rect x="4" y="10" width="24" height="6" rx="2" fill="currentColor"/>
+          <rect x="8" y="0" width="16" height="6" rx="2" fill="currentColor"/>
+        </svg>
+      </div>
+      <h1 class="hero-headline">Built for people who<br>work for themselves.</h1>
+      <p class="hero-sub">Simple, affordable software to manage your clients, sessions, billing, and reminders&thinsp;—&thinsp;without enterprise complexity or pricing. Purpose-built for your niche, not a bloated platform you'll never fully use.</p>
+      <a href="#products" class="hero-cta">See our products <span class="cta-arrow">&darr;</span></a>
+    </div>
+  </section>
+
+  <!-- Products / Hub and Spoke -->
+  <section class="products" id="products">
+    <div class="products-inner">
+      <div class="section-label">Products</div>
+      <h2 class="section-heading">One family of tools.<br>Each built for a specific pro.</h2>
+      <p class="section-sub">Every Steady product is tailored to the workflows, language, and pricing of a specific profession. No feature bloat. No learning curve.</p>
+
+      <!-- Hub and Spoke Visual -->
+      <div class="hub-spoke">
+        <div class="hub-center">
+          <svg class="hub-logo-mark" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="20" width="32" height="6" rx="2" fill="currentColor"/>
+            <rect x="4" y="10" width="24" height="6" rx="2" fill="currentColor"/>
+            <rect x="8" y="0" width="16" height="6" rx="2" fill="currentColor"/>
+          </svg>
+          <span class="hub-label">Steady</span>
+        </div>
+
+        <!-- Spoke cards -->
+        <div class="spoke-ring">
+          <!-- SteadyPractice — LIVE -->
+          <a href="https://tinypractice.app" target="_blank" rel="noopener noreferrer" class="spoke-card spoke-live" data-index="0">
+            <div class="spoke-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Practice</span></div>
+            <div class="spoke-audience">For solo therapists</div>
+            <div class="spoke-tagline">Manage your caseload with ease</div>
+            <div class="spoke-badge spoke-badge-live">Live</div>
+          </a>
+
+          <!-- SteadyTrainer — Coming Soon -->
+          <div class="spoke-card spoke-soon" data-index="1">
+            <div class="spoke-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V6a2 2 0 00-2-2H8a2 2 0 00-2 2v14"/><path d="M2 20h20"/><path d="M14 12H10"/></svg>
+            </div>
+            <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Trainer</span></div>
+            <div class="spoke-audience">For fitness trainers</div>
+            <div class="spoke-tagline">Clients, sessions, and progress</div>
+            <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
+          </div>
+
+          <!-- SteadyWalker — Coming Soon -->
+          <div class="spoke-card spoke-soon" data-index="2">
+            <div class="spoke-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Walker</span></div>
+            <div class="spoke-audience">For dog walkers</div>
+            <div class="spoke-tagline">Routes, schedules, and happy pups</div>
+            <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
+          </div>
+
+          <!-- SteadySalon — Coming Soon -->
+          <div class="spoke-card spoke-soon" data-index="3">
+            <div class="spoke-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v18"/><path d="M6 3c4 0 6 2 6 5s-2 5-6 5"/></svg>
+            </div>
+            <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Salon</span></div>
+            <div class="spoke-audience">For hairstylists &amp; barbers</div>
+            <div class="spoke-tagline">Bookings, clients, and chair time</div>
+            <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
+          </div>
+
+          <!-- SteadyTutor — Coming Soon -->
+          <div class="spoke-card spoke-soon" data-index="4">
+            <div class="spoke-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            </div>
+            <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Tutor</span></div>
+            <div class="spoke-audience">For independent tutors</div>
+            <div class="spoke-tagline">Lessons, students, and scheduling</div>
+            <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
+          </div>
+
+          <!-- SteadyCoach — Coming Soon -->
+          <div class="spoke-card spoke-soon" data-index="5">
+            <div class="spoke-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Coach</span></div>
+            <div class="spoke-audience">For life &amp; business coaches</div>
+            <div class="spoke-tagline">Goals, sessions, and accountability</div>
+            <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Steady -->
+  <section class="why" id="why">
+    <div class="why-inner">
+      <div class="section-label">Why Steady</div>
+      <h2 class="section-heading">Software that fits the way you work.</h2>
+      <div class="value-grid">
+        <div class="value-card" data-anim="fade-up">
+          <div class="value-number">01</div>
+          <h3 class="value-title">Built for your niche</h3>
+          <p class="value-desc">Not a bloated one-size-fits-all platform. Every Steady product speaks the language of your profession&thinsp;—&thinsp;your workflows, your vocabulary, your day.</p>
+        </div>
+        <div class="value-card" data-anim="fade-up">
+          <div class="value-number">02</div>
+          <h3 class="value-title">Actually affordable</h3>
+          <p class="value-desc">No $99/mo enterprise pricing. We charge what makes sense for independent professionals, not Fortune 500 budgets.</p>
+        </div>
+        <div class="value-card" data-anim="fade-up">
+          <div class="value-number">03</div>
+          <h3 class="value-title">Simple to use</h3>
+          <p class="value-desc">Get started in minutes, not days. No onboarding calls, no training videos. If you can use a calendar, you can use Steady.</p>
+        </div>
+        <div class="value-card" data-anim="fade-up">
+          <div class="value-number">04</div>
+          <h3 class="value-title">Your data stays yours</h3>
+          <p class="value-desc">Privacy by design. We don't sell your data, mine it for ads, or lock you in. Export everything, anytime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="blog" id="blog">
+    <div class="blog-inner">
+      <div class="section-label">Blog</div>
+      <h2 class="section-heading">From the team</h2>
+      <div class="blog-grid">
+        <article class="blog-card" data-anim="fade-up">
+          <time class="blog-date">February 24, 2026</time>
+          <h3 class="blog-title">Why We're Building Steady</h3>
+          <p class="blog-excerpt">There are thousands of tools for managing clients. Almost none of them are built for the solo therapist, the independent trainer, or the neighborhood dog walker. Here's why we think that needs to change.</p>
+          <a href="#" class="blog-link">Read more</a>
+        </article>
+        <article class="blog-card" data-anim="fade-up">
+          <time class="blog-date">February 18, 2026</time>
+          <h3 class="blog-title">The Problem with Practice Management Software</h3>
+          <p class="blog-excerpt">Most practice management tools were designed for large clinics and group practices. Solo practitioners end up paying for features they'll never use, wrestling with complexity they don't need.</p>
+          <a href="#" class="blog-link">Read more</a>
+        </article>
+        <article class="blog-card" data-anim="fade-up">
+          <time class="blog-date">February 10, 2026</time>
+          <h3 class="blog-title">What Independent Pros Actually Need from Their Tools</h3>
+          <p class="blog-excerpt">We talked to dozens of independent professionals across six industries. The common thread? They want something that works, doesn't cost a fortune, and stays out of their way.</p>
+          <a href="#" class="blog-link">Read more</a>
+        </article>
+        <article class="blog-card" data-anim="fade-up">
+          <time class="blog-date">February 3, 2026</time>
+          <h3 class="blog-title">Announcing SteadyPractice</h3>
+          <p class="blog-excerpt">Our first product is live. SteadyPractice is simple software for solo therapists to manage their caseload, schedule sessions, send reminders, and handle billing&thinsp;—&thinsp;all in one place.</p>
+          <a href="https://tinypractice.app" target="_blank" rel="noopener noreferrer" class="blog-link">Read more</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="20" width="32" height="6" rx="2" fill="currentColor"/>
+            <rect x="4" y="10" width="24" height="6" rx="2" fill="currentColor"/>
+            <rect x="8" y="0" width="16" height="6" rx="2" fill="currentColor"/>
+          </svg>
+          <span>Steady</span>
+        </div>
+        <p class="footer-tagline">Simple software for independent pros.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Products</h4>
+          <a href="https://tinypractice.app" target="_blank" rel="noopener noreferrer">SteadyPractice</a>
+          <span class="footer-muted">SteadyTrainer (coming soon)</span>
+          <span class="footer-muted">SteadyWalker (coming soon)</span>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#blog">Blog</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 BrookFord LLC</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
