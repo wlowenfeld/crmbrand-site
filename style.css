@@ -1,5 +1,6 @@
 /* ============================================
    Steady — Mother Brand Landing Page
+   Redesign: Radial Hub-Spoke + Motion
    ============================================ */
 
 :root {
@@ -30,6 +31,7 @@
   --radius-lg: 16px;
 
   --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Reset */
@@ -177,17 +179,59 @@ img { max-width: 100%; display: block; }
   text-align: center;
 }
 
+/* Hero logo — bars animate in staggered */
 .hero-logo-large {
   display: inline-block;
   margin-bottom: var(--space-lg);
   color: var(--color-accent);
-  opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hero-logo-large svg {
   width: 48px;
   height: auto;
+}
+
+.hero-bar {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.hero-bar-bottom {
+  animation: heroBarIn 0.5s var(--ease-out-expo) 0.1s forwards;
+}
+
+.hero-bar-middle {
+  animation: heroBarIn 0.5s var(--ease-out-expo) 0.25s forwards;
+}
+
+.hero-bar-top {
+  animation: heroBarIn 0.5s var(--ease-out-expo) 0.4s forwards;
+}
+
+@keyframes heroBarIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Breathing animation on the hero logo after bars appear */
+.hero-logo-large svg {
+  animation: heroBreathe 4s ease-in-out 1.2s infinite;
+}
+
+@keyframes heroBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+/* Headline clip reveal */
+.hero-headline-wrap {
+  overflow: hidden;
 }
 
 .hero-headline {
@@ -198,7 +242,19 @@ img { max-width: 100%; display: block; }
   color: var(--color-text);
   margin-bottom: var(--space-md);
   opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  transform: translateY(100%);
+  animation: headlineReveal 0.9s var(--ease-out-expo) 0.55s forwards;
+}
+
+@keyframes headlineReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-sub {
@@ -208,7 +264,7 @@ img { max-width: 100%; display: block; }
   max-width: 580px;
   margin: 0 auto var(--space-lg);
   opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+  animation: fadeInUp 0.8s var(--ease-out-expo) 0.75s forwards;
 }
 
 .hero-cta {
@@ -223,7 +279,7 @@ img { max-width: 100%; display: block; }
   border-radius: 100px;
   transition: all var(--transition);
   opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+  animation: fadeInUp 0.8s var(--ease-out-expo) 0.95s forwards;
 }
 
 .hero-cta:hover {
@@ -269,7 +325,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============================================
-   Products — Hub and Spoke
+   Products — Radial Hub and Spoke
    ============================================ */
 
 .products {
@@ -282,122 +338,266 @@ img { max-width: 100%; display: block; }
   margin: 0 auto;
 }
 
-/* Hub and Spoke Layout */
-.hub-spoke {
-  margin-top: var(--space-2xl);
+/* Radial container — square aspect ratio */
+.hub-spoke-radial {
   position: relative;
-  text-align: center;
+  width: 100%;
+  max-width: 840px;
+  margin: var(--space-2xl) auto 0;
+  aspect-ratio: 1 / 1;
 }
 
+/* SVG spoke lines overlay */
+.spoke-lines-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.spoke-line {
+  stroke: var(--color-border);
+  stroke-width: 1.5;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke 0.3s ease;
+}
+
+/* Line to the Live card is accented */
+.spoke-line[data-spoke="0"] {
+  stroke: var(--color-accent);
+  stroke-width: 2;
+}
+
+.spoke-lines-drawn .spoke-line {
+  stroke-dashoffset: 0;
+}
+
+/* Center Hub */
 .hub-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  margin-bottom: var(--space-lg);
-  position: relative;
+  gap: 6px;
+  background: var(--color-white);
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  justify-content: center;
+  box-shadow: 0 4px 24px rgba(91, 127, 110, 0.1);
+}
+
+.hub-center::after {
+  display: none; /* remove the old vertical line */
 }
 
 .hub-logo-mark {
-  width: 40px;
+  width: 30px;
   height: auto;
   color: var(--color-accent);
 }
 
 .hub-label {
-  font-size: 1.125rem;
+  font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--color-text);
 }
 
-/* Connecting line from hub to grid */
-.hub-center::after {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--color-accent), var(--color-border));
-  margin: 12px auto 0;
-}
-
-/* Spoke Grid */
-.spoke-ring {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
-  max-width: 960px;
-  margin: 0 auto;
-  position: relative;
-}
-
-/* Connecting lines above the grid */
-.spoke-ring::before {
-  content: '';
+/* Pulse ring animation */
+.hub-pulse-ring {
   position: absolute;
-  top: -1px;
-  left: 16.67%;
-  right: 16.67%;
-  height: 1px;
-  background: var(--color-border);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  opacity: 0;
+  pointer-events: none;
 }
 
-/* Spoke Cards */
+.hub-pulse-ring.pulse-active {
+  animation: pulseRing 1.2s var(--ease-out-expo) forwards;
+}
+
+@keyframes pulseRing {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.2);
+  }
+}
+
+/* Ghost circles for "more coming" */
+.ghost-circle {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px dashed var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-out-expo);
+}
+
+.ghost-circle span {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  line-height: 1;
+}
+
+.hub-spoke-radial.revealed .ghost-circle {
+  opacity: 0.5;
+}
+
+/* Position ghost circles between spokes */
+.ghost-1 {
+  top: 9%;
+  left: 68%;
+}
+.ghost-2 {
+  top: 68%;
+  right: 6%;
+}
+.ghost-3 {
+  bottom: 9%;
+  left: 28%;
+}
+.ghost-4 {
+  top: 42%;
+  left: 3%;
+}
+
+/* ---- Spoke Cards ---- */
 .spoke-card {
-  position: relative;
+  position: absolute;
+  z-index: 4;
+  width: 180px;
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-md) var(--space-md) calc(var(--space-md) + 4px);
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  cursor: default;
+  padding: 18px 16px 20px;
   text-align: left;
+  cursor: default;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.6s var(--ease-out-expo);
 }
 
-/* Vertical tick connecting each card to the horizontal line */
 .spoke-card::before {
-  content: '';
-  position: absolute;
-  top: -17px;
-  left: 50%;
-  width: 1px;
-  height: 16px;
-  background: var(--color-border);
+  display: none; /* remove old tick */
 }
 
-/* Live product card */
+/* Position each card on the radial ring — centered on position */
+/* Card 0 — top (0°) */
+.spoke-card[data-spoke="0"] {
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+}
+
+/* Card 1 — top-right (60°) */
+.spoke-card[data-spoke="1"] {
+  top: 18%;
+  right: 3%;
+  transform: scale(0.95);
+}
+
+/* Card 2 — bottom-right (120°) */
+.spoke-card[data-spoke="2"] {
+  bottom: 18%;
+  right: 3%;
+  transform: scale(0.95);
+}
+
+/* Card 3 — bottom (180°) */
+.spoke-card[data-spoke="3"] {
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+}
+
+/* Card 4 — bottom-left (240°) */
+.spoke-card[data-spoke="4"] {
+  bottom: 18%;
+  left: 3%;
+  transform: scale(0.95);
+}
+
+/* Card 5 — top-left (300°) */
+.spoke-card[data-spoke="5"] {
+  top: 18%;
+  left: 3%;
+  transform: scale(0.95);
+}
+
+/* Revealed state */
+.spoke-card.card-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.spoke-card[data-spoke="0"].card-visible {
+  transform: translateX(-50%) scale(1);
+}
+
+.spoke-card[data-spoke="3"].card-visible {
+  transform: translateX(-50%) scale(1);
+}
+
+/* Live product card — accented */
 .spoke-live {
   cursor: pointer;
   border-color: var(--color-accent);
   background: var(--color-accent-light);
+  box-shadow: 0 0 0 0 rgba(91, 127, 110, 0);
 }
 
-.spoke-live::before {
-  background: var(--color-accent);
+.spoke-live.card-visible {
+  box-shadow: 0 0 20px rgba(91, 127, 110, 0.12);
 }
 
 .spoke-live:hover {
-  transform: translateY(-3px) !important;
-  box-shadow: 0 8px 32px rgba(91, 127, 110, 0.12);
+  transform: translateX(-50%) scale(1.03) !important;
+  box-shadow: 0 8px 32px rgba(91, 127, 110, 0.18) !important;
 }
 
 /* Coming soon cards — muted */
 .spoke-soon {
-  opacity: 0.5;
+  /* already low opacity from card-visible state */
 }
 
-.spoke-soon.anim-hidden {
-  opacity: 0;
+.spoke-soon.card-visible {
+  opacity: 0.55;
 }
 
 .spoke-soon .spoke-icon {
   color: var(--color-text-muted);
 }
 
+/* Spoke card inner elements */
 .spoke-icon {
-  width: 28px;
-  height: 28px;
-  margin-bottom: var(--space-sm);
+  width: 24px;
+  height: 24px;
+  margin-bottom: 10px;
   color: var(--color-accent);
 }
 
@@ -407,10 +607,10 @@ img { max-width: 100%; display: block; }
 }
 
 .spoke-name {
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .spoke-name strong {
@@ -427,36 +627,72 @@ img { max-width: 100%; display: block; }
 }
 
 .spoke-audience {
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: var(--color-text-secondary);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .spoke-tagline {
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: var(--color-text-muted);
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .spoke-badge {
   display: inline-block;
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 3px 10px;
+  padding: 2px 8px;
   border-radius: 100px;
-  margin-top: var(--space-sm);
+  margin-top: 10px;
 }
 
 .spoke-badge-live {
   background: var(--color-accent);
   color: var(--color-white);
+  animation: none; /* will be set by JS */
+}
+
+/* Breathing glow for Live badge */
+.spoke-badge-live.glow-active {
+  animation: liveGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes liveGlow {
+  0%, 100% {
+    box-shadow: 0 0 4px rgba(91, 127, 110, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(91, 127, 110, 0.45);
+  }
 }
 
 .spoke-badge-soon {
   background: var(--color-border);
   color: var(--color-text-muted);
+}
+
+/* ---- More Coming ---- */
+.more-coming {
+  text-align: center;
+  margin-top: var(--space-lg);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.8s var(--ease-out-expo);
+}
+
+.more-coming.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.more-coming-text {
+  font-size: 1.0625rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  letter-spacing: -0.01em;
 }
 
 /* ============================================
@@ -485,11 +721,27 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 0.6s var(--ease-out-expo);
 }
 
 .value-card:hover {
   box-shadow: 0 4px 20px rgba(26, 26, 26, 0.04);
+}
+
+/* Slide animation states for value cards */
+.value-card.anim-hidden-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.value-card.anim-hidden-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.value-card.anim-visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .value-number {
@@ -498,6 +750,17 @@ img { max-width: 100%; display: block; }
   color: var(--color-accent);
   letter-spacing: 0.06em;
   margin-bottom: var(--space-sm);
+  transition: color 0.6s var(--ease-out-expo);
+}
+
+.value-card.anim-visible .value-number {
+  animation: numberColorFlash 1s var(--ease-out-expo) forwards;
+}
+
+@keyframes numberColorFlash {
+  0% { color: var(--color-text-muted); }
+  50% { color: var(--color-accent-dark); }
+  100% { color: var(--color-accent); }
 }
 
 .value-title {
@@ -539,11 +802,24 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 0.5s var(--ease-out-expo);
 }
 
+/* Blog card hidden state */
+.blog-card.anim-hidden {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.blog-card.anim-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover lift + shadow for blog cards */
 .blog-card:hover {
-  box-shadow: 0 4px 20px rgba(26, 26, 26, 0.04);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(26, 26, 26, 0.06);
 }
 
 .blog-date {
@@ -680,7 +956,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============================================
-   Animations
+   Animations — shared keyframes
    ============================================ */
 
 @keyframes fadeInUp {
@@ -694,25 +970,75 @@ img { max-width: 100%; display: block; }
   }
 }
 
-/* JS-driven reveal animations */
-.anim-hidden {
-  opacity: 0 !important;
-  transform: translateY(20px) !important;
-}
-
-.anim-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.spoke-soon.anim-visible {
-  opacity: 0.5;
-}
-
 /* ============================================
    Responsive
    ============================================ */
 
+/* ---- Tablet: 2x3 grid, no radial ---- */
+@media (max-width: 1024px) {
+  .hub-spoke-radial {
+    aspect-ratio: auto;
+    max-width: 640px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    padding: 0;
+  }
+
+  .spoke-lines-svg {
+    display: none;
+  }
+
+  .ghost-circle {
+    display: none;
+  }
+
+  .hub-center {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    grid-column: 1 / -1;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto var(--space-sm);
+  }
+
+  .hub-pulse-ring {
+    width: 90px;
+    height: 90px;
+  }
+
+  .spoke-card {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100%;
+    transform: none !important;
+    opacity: 0;
+  }
+
+  .spoke-card.card-visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .spoke-soon.card-visible {
+    opacity: 0.55 !important;
+  }
+
+  .spoke-live:hover {
+    transform: translateY(-3px) !important;
+  }
+
+  .more-coming {
+    margin-top: var(--space-xl);
+  }
+}
+
+/* ---- Mobile: single column ---- */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
@@ -735,17 +1061,9 @@ img { max-width: 100%; display: block; }
     display: none;
   }
 
-  .spoke-ring {
+  .hub-spoke-radial {
     grid-template-columns: 1fr;
     max-width: 400px;
-  }
-
-  .spoke-ring::before {
-    display: none;
-  }
-
-  .spoke-card::before {
-    display: none;
   }
 
   .value-grid {
@@ -764,6 +1082,12 @@ img { max-width: 100%; display: block; }
   .section-heading br {
     display: none;
   }
+
+  /* On mobile the value-cards just fade-up instead of slide-left/right */
+  .value-card.anim-hidden-left,
+  .value-card.anim-hidden-right {
+    transform: translateY(24px);
+  }
 }
 
 @media (max-width: 480px) {
@@ -779,15 +1103,69 @@ img { max-width: 100%; display: block; }
   .blog-card {
     padding: var(--space-md);
   }
+
+  .spoke-card {
+    padding: 14px 14px 16px;
+  }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .spoke-ring {
-    grid-template-columns: repeat(2, 1fr);
+/* ============================================
+   Prefers Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 
-  .spoke-ring::before {
-    left: 25%;
-    right: 25%;
+  .hero-bar {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-headline {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-sub {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-cta {
+    opacity: 1;
+    transform: none;
+  }
+
+  .spoke-card {
+    opacity: 1;
+    transform: none;
+  }
+
+  .spoke-soon {
+    opacity: 0.55;
+  }
+
+  .spoke-line {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .ghost-circle {
+    opacity: 0.5;
+  }
+
+  .more-coming {
+    opacity: 1;
+    transform: none;
+  }
+
+  .value-card,
+  .blog-card {
+    opacity: 1;
+    transform: none;
   }
 }

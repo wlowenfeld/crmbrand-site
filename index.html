@@ -47,12 +47,14 @@
     <div class="hero-inner">
       <div class="hero-logo-large" aria-hidden="true">
         <svg viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="0" y="20" width="32" height="6" rx="2" fill="currentColor"/>
-          <rect x="4" y="10" width="24" height="6" rx="2" fill="currentColor"/>
-          <rect x="8" y="0" width="16" height="6" rx="2" fill="currentColor"/>
+          <rect class="hero-bar hero-bar-bottom" x="0" y="20" width="32" height="6" rx="2" fill="currentColor"/>
+          <rect class="hero-bar hero-bar-middle" x="4" y="10" width="24" height="6" rx="2" fill="currentColor"/>
+          <rect class="hero-bar hero-bar-top" x="8" y="0" width="16" height="6" rx="2" fill="currentColor"/>
         </svg>
       </div>
-      <h1 class="hero-headline">Built for people who<br>work for themselves.</h1>
+      <div class="hero-headline-wrap">
+        <h1 class="hero-headline">Built for people who<br>work for themselves.</h1>
+      </div>
       <p class="hero-sub">Simple, affordable software to manage your clients, sessions, billing, and reminders&thinsp;—&thinsp;without enterprise complexity or pricing. Purpose-built for your niche, not a bloated platform you'll never fully use.</p>
       <a href="#products" class="hero-cta">See our products <span class="cta-arrow">&darr;</span></a>
     </div>
@@ -62,12 +64,30 @@
   <section class="products" id="products">
     <div class="products-inner">
       <div class="section-label">Products</div>
-      <h2 class="section-heading">One family of tools.<br>Each built for a specific pro.</h2>
+      <h2 class="section-heading">One family of tools.<br> Each built for a specific pro.</h2>
       <p class="section-sub">Every Steady product is tailored to the workflows, language, and pricing of a specific profession. No feature bloat. No learning curve.</p>
 
-      <!-- Hub and Spoke Visual -->
-      <div class="hub-spoke">
-        <div class="hub-center">
+      <!-- Radial Hub and Spoke Visual -->
+      <div class="hub-spoke-radial" id="hubSpoke">
+        <!-- SVG lines layer -->
+        <svg class="spoke-lines-svg" id="spokeLinesSvg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid meet">
+          <line class="spoke-line" data-spoke="0" x1="400" y1="400" x2="400" y2="100"/>
+          <line class="spoke-line" data-spoke="1" x1="400" y1="400" x2="660" y2="250"/>
+          <line class="spoke-line" data-spoke="2" x1="400" y1="400" x2="660" y2="550"/>
+          <line class="spoke-line" data-spoke="3" x1="400" y1="400" x2="400" y2="700"/>
+          <line class="spoke-line" data-spoke="4" x1="400" y1="400" x2="140" y2="550"/>
+          <line class="spoke-line" data-spoke="5" x1="400" y1="400" x2="140" y2="250"/>
+        </svg>
+
+        <!-- Ghost circles suggesting more products -->
+        <div class="ghost-circle ghost-1" aria-hidden="true"><span>+</span></div>
+        <div class="ghost-circle ghost-2" aria-hidden="true"><span>+</span></div>
+        <div class="ghost-circle ghost-3" aria-hidden="true"><span>+</span></div>
+        <div class="ghost-circle ghost-4" aria-hidden="true"><span>+</span></div>
+
+        <!-- Center Hub -->
+        <div class="hub-center" id="hubCenter">
+          <div class="hub-pulse-ring"></div>
           <svg class="hub-logo-mark" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0" y="20" width="32" height="6" rx="2" fill="currentColor"/>
             <rect x="4" y="10" width="24" height="6" rx="2" fill="currentColor"/>
@@ -76,74 +96,77 @@
           <span class="hub-label">Steady</span>
         </div>
 
-        <!-- Spoke cards -->
-        <div class="spoke-ring">
-          <!-- SteadyPractice — LIVE -->
-          <a href="https://tinypractice.app" target="_blank" rel="noopener noreferrer" class="spoke-card spoke-live" data-index="0">
-            <div class="spoke-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
-            <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Practice</span></div>
-            <div class="spoke-audience">For solo therapists</div>
-            <div class="spoke-tagline">Manage your caseload with ease</div>
-            <div class="spoke-badge spoke-badge-live">Live</div>
-          </a>
-
-          <!-- SteadyTrainer — Coming Soon -->
-          <div class="spoke-card spoke-soon" data-index="1">
-            <div class="spoke-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V6a2 2 0 00-2-2H8a2 2 0 00-2 2v14"/><path d="M2 20h20"/><path d="M14 12H10"/></svg>
-            </div>
-            <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Trainer</span></div>
-            <div class="spoke-audience">For fitness trainers</div>
-            <div class="spoke-tagline">Clients, sessions, and progress</div>
-            <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
+        <!-- Spoke Cards — positioned radially -->
+        <!-- 0° = top -->
+        <a href="https://tinypractice.app" target="_blank" rel="noopener noreferrer" class="spoke-card spoke-live" data-spoke="0">
+          <div class="spoke-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
+          <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Practice</span></div>
+          <div class="spoke-audience">For solo therapists</div>
+          <div class="spoke-tagline">Manage your caseload with ease</div>
+          <div class="spoke-badge spoke-badge-live">Live</div>
+        </a>
 
-          <!-- SteadyWalker — Coming Soon -->
-          <div class="spoke-card spoke-soon" data-index="2">
-            <div class="spoke-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            </div>
-            <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Walker</span></div>
-            <div class="spoke-audience">For dog walkers</div>
-            <div class="spoke-tagline">Routes, schedules, and happy pups</div>
-            <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
+        <!-- 60° = top-right -->
+        <div class="spoke-card spoke-soon" data-spoke="1">
+          <div class="spoke-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V6a2 2 0 00-2-2H8a2 2 0 00-2 2v14"/><path d="M2 20h20"/><path d="M14 12H10"/></svg>
           </div>
-
-          <!-- SteadySalon — Coming Soon -->
-          <div class="spoke-card spoke-soon" data-index="3">
-            <div class="spoke-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v18"/><path d="M6 3c4 0 6 2 6 5s-2 5-6 5"/></svg>
-            </div>
-            <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Salon</span></div>
-            <div class="spoke-audience">For hairstylists &amp; barbers</div>
-            <div class="spoke-tagline">Bookings, clients, and chair time</div>
-            <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
-          </div>
-
-          <!-- SteadyTutor — Coming Soon -->
-          <div class="spoke-card spoke-soon" data-index="4">
-            <div class="spoke-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-            </div>
-            <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Tutor</span></div>
-            <div class="spoke-audience">For independent tutors</div>
-            <div class="spoke-tagline">Lessons, students, and scheduling</div>
-            <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
-          </div>
-
-          <!-- SteadyCoach — Coming Soon -->
-          <div class="spoke-card spoke-soon" data-index="5">
-            <div class="spoke-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            </div>
-            <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Coach</span></div>
-            <div class="spoke-audience">For life &amp; business coaches</div>
-            <div class="spoke-tagline">Goals, sessions, and accountability</div>
-            <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
-          </div>
+          <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Trainer</span></div>
+          <div class="spoke-audience">For fitness trainers</div>
+          <div class="spoke-tagline">Clients, sessions, and progress</div>
+          <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
         </div>
+
+        <!-- 120° = bottom-right -->
+        <div class="spoke-card spoke-soon" data-spoke="2">
+          <div class="spoke-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Walker</span></div>
+          <div class="spoke-audience">For dog walkers</div>
+          <div class="spoke-tagline">Routes, schedules, and happy pups</div>
+          <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
+        </div>
+
+        <!-- 180° = bottom -->
+        <div class="spoke-card spoke-soon" data-spoke="3">
+          <div class="spoke-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v18"/><path d="M6 3c4 0 6 2 6 5s-2 5-6 5"/></svg>
+          </div>
+          <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Salon</span></div>
+          <div class="spoke-audience">For hairstylists &amp; barbers</div>
+          <div class="spoke-tagline">Bookings, clients, and chair time</div>
+          <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
+        </div>
+
+        <!-- 240° = bottom-left -->
+        <div class="spoke-card spoke-soon" data-spoke="4">
+          <div class="spoke-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Tutor</span></div>
+          <div class="spoke-audience">For independent tutors</div>
+          <div class="spoke-tagline">Lessons, students, and scheduling</div>
+          <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
+        </div>
+
+        <!-- 300° = top-left -->
+        <div class="spoke-card spoke-soon" data-spoke="5">
+          <div class="spoke-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <div class="spoke-name"><strong>Steady</strong><span class="spoke-vertical">Coach</span></div>
+          <div class="spoke-audience">For life &amp; business coaches</div>
+          <div class="spoke-tagline">Goals, sessions, and accountability</div>
+          <div class="spoke-badge spoke-badge-soon">Coming Soon</div>
+        </div>
+      </div>
+
+      <!-- More Coming messaging -->
+      <div class="more-coming">
+        <p class="more-coming-text">And this is just the beginning. If you work for yourself, there's a Steady for you.</p>
       </div>
     </div>
   </section>
@@ -154,22 +177,22 @@
       <div class="section-label">Why Steady</div>
       <h2 class="section-heading">Software that fits the way you work.</h2>
       <div class="value-grid">
-        <div class="value-card" data-anim="fade-up">
+        <div class="value-card" data-anim="slide-left">
           <div class="value-number">01</div>
           <h3 class="value-title">Built for your niche</h3>
           <p class="value-desc">Not a bloated one-size-fits-all platform. Every Steady product speaks the language of your profession&thinsp;—&thinsp;your workflows, your vocabulary, your day.</p>
         </div>
-        <div class="value-card" data-anim="fade-up">
+        <div class="value-card" data-anim="slide-right">
           <div class="value-number">02</div>
           <h3 class="value-title">Actually affordable</h3>
           <p class="value-desc">No $99/mo enterprise pricing. We charge what makes sense for independent professionals, not Fortune 500 budgets.</p>
         </div>
-        <div class="value-card" data-anim="fade-up">
+        <div class="value-card" data-anim="slide-left">
           <div class="value-number">03</div>
           <h3 class="value-title">Simple to use</h3>
           <p class="value-desc">Get started in minutes, not days. No onboarding calls, no training videos. If you can use a calendar, you can use Steady.</p>
         </div>
-        <div class="value-card" data-anim="fade-up">
+        <div class="value-card" data-anim="slide-right">
           <div class="value-number">04</div>
           <h3 class="value-title">Your data stays yours</h3>
           <p class="value-desc">Privacy by design. We don't sell your data, mine it for ads, or lock you in. Export everything, anytime.</p>
