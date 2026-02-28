@@ -1002,7 +1002,8 @@ img, svg {
   }
 
   .hero {
-    min-height: auto;
+    min-height: 100vh;
+    min-height: 100dvh; /* dynamic viewport height for mobile browser chrome */
     padding: calc(64px + var(--space-xl)) var(--space-md) var(--space-xl);
   }
 
