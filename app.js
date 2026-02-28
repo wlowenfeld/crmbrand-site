@@ -1,5 +1,5 @@
 /* ============================================
-   Steady — Landing Page Interactions
+   SteadyLayer — Landing Page Interactions
    Redesign: Hub-Spoke + Motion
    ============================================ */
 
@@ -134,7 +134,7 @@
   animateSpokes();
 
   // ============================================
-  // Why Steady — Slide-in animations
+  // Why SteadyLayer — Slide-in animations
   // ============================================
 
   var valueCards = document.querySelectorAll('.value-card');
